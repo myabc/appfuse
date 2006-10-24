@@ -11,12 +11,6 @@
         <aop:advisor id="managerTx" advice-ref="txAdvice" pointcut="execution(* *..service.*Manager.*(..))" order="2"/>
     </aop:config>
     
-    <!-- Enable @Transactional support -->
-    <tx:annotation-driven/>
-    
-    <!-- Enable @AspectJ support -->
-    <aop:aspectj-autoproxy/>
-    
     <tx:advice id="txAdvice">
         <tx:attributes>
             <tx:method name="get*" read-only="true"/>
