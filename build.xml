@@ -1001,16 +1001,21 @@
     </target>
 
     <target name="todo" description="creates report of todos in code">
-
-        <taskdef name="todo"
-            classname="xdoclet.modules.doc.DocumentDocletTask"
+        <taskdef name="todo" classname="xdoclet.modules.doc.DocumentDocletTask"
             classpathref="xdoclet.classpath"/>
-            
+
         <mkdir dir="${build.dir}/docs/todo"/>
         <todo destdir="${build.dir}/docs/todo">
-            <fileset dir="${src}">
+            <fileset dir="${src}/dao">
                 <patternset refid="java.files.pattern"/>
             </fileset>
+            <fileset dir="${src}/service">
+                <patternset refid="java.files.pattern"/>
+            </fileset>
+            <fileset dir="${src}/web">
+                <patternset refid="java.files.pattern"/>
+            </fileset>
+            <info/>
         </todo>
     </target>
 
