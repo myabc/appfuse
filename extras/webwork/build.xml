@@ -237,7 +237,7 @@ strutstestcase.jar=${strutstestcase.dir}/strutstest-${strutstestcase.version}.ja
 	<classpathentry kind="lib" path="lib/webwork-2.2.4/oscore-2.2.4.jar"/>
 	<classpathentry kind="lib" path="lib/webwork-2.2.4/rife-continuations-0.0.2.jar"/>
 	<classpathentry kind="lib" path="lib/webwork-2.2.4/webwork-2.2.4.jar"/>
-	<classpathentry kind="lib" path="lib/webwork-2.2.4/xwork-1.2.1jar"/>]]></replacevalue>
+	<classpathentry kind="lib" path="lib/webwork-2.2.4/xwork-1.2.1.jar"/>]]></replacevalue>
         </replace>
 
         <echo level="info">Refactoring build.xml</echo>
