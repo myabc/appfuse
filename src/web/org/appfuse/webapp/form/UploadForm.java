@@ -15,15 +15,14 @@ import org.apache.struts.upload.MultipartRequestHandler;
  * see that application.
  *
  * @author <a href="mailto:matt@raibledesigns.com">Matt Raible</a>
- * @version $Revision: 1.5.2.1 $ $Date: 2006/07/09 19:26:51 $
+ * @version $Revision: 1.5.2.1 $ $Date$
  * 
  * @struts.form name="uploadForm"
  */
 public class UploadForm extends BaseForm {
-	private static final long serialVersionUID = 3257850969634190134L;
+    private static final long serialVersionUID = 3257850969634190134L;
 
-	public static final String ERROR_PROPERTY_MAX_LENGTH_EXCEEDED =
-        "MaxLengthExceeded";
+    public static final String ERROR_PROPERTY_MAX_LENGTH_EXCEEDED = "MaxLengthExceeded";
 
     /** The value of the text the user has sent as form data */
     protected String name;

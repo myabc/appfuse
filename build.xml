@@ -1095,57 +1095,6 @@
         </java>
     </target>
     
-    <!-- ============================================================== -->
-    <!-- Tomcat tasks - remove these if you don't have Tomcat installed -->
-    <!-- ============================================================== -->
-    <taskdef file="${ant-contrib.dir}/tomcatTasks.properties">
-        <classpath>
-            <fileset dir="${tomcat.home}/server/lib" includes="catalina-ant*.jar"/>
-        </classpath>
-    </taskdef>
-    <target name="install" description="Install application in Tomcat"
-        depends="package-web">
-        <deploy url="${tomcat.manager.url}"
-            username="${tomcat.username}"
-            password="${tomcat.password}"
-            path="/${webapp.name}"
-            war="file:${webapp.dist}/${webapp.war}"/>
-    </target>
-
-    <target name="remove" description="Remove application in Tomcat">
-        <undeploy url="${tomcat.manager.url}"
-            username="${tomcat.username}"
-            password="${tomcat.password}"
-            path="/${webapp.name}"/>
-    </target>
-
-    <target name="reload" description="Reload application in Tomcat">
-        <reload url="${tomcat.manager.url}"
-            username="${tomcat.username}"
-            password="${tomcat.password}"
-            path="/${webapp.name}"/>
-    </target>
-
-    <target name="start" description="Start Tomcat application">
-        <start url="${tomcat.manager.url}"
-            username="${tomcat.username}"
-            password="${tomcat.password}"
-            path="/${webapp.name}"/>
-    </target>
-
-    <target name="stop" description="Stop Tomcat application">
-        <stop url="${tomcat.manager.url}"
-            username="${tomcat.username}"
-            password="${tomcat.password}"
-            path="/${webapp.name}"/>
-    </target>
-
-    <target name="list" description="List Tomcat applications">
-        <list url="${tomcat.manager.url}"
-            username="${tomcat.username}"
-            password="${tomcat.password}"/>
-    </target>
-
     <!-- =================================================================== -->
     <!--            Creates documentation from wiki                          -->
     <!-- =================================================================== -->
