@@ -7,16 +7,10 @@ import com.dumbster.smtp.SimpleSmtpServer;
 
 
 public class PasswordHintControllerTest extends BaseControllerTestCase {
-    private PasswordHintController c;
-
-    protected void setUp() throws Exception {
-        super.setUp(); // needed to initialize a user
-        c = (PasswordHintController) ctx.getBean("passwordHintController");
-    }
+    private PasswordHintController c = null;
     
-    protected void tearDown() throws Exception {
-        super.tearDown();
-        c = null;
+    public void setPasswordHintController(PasswordHintController password) {
+        this.c = password;
     }
 
     public void testExecute() throws Exception {

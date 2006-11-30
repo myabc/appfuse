@@ -13,7 +13,7 @@ public class <XDtForm:className/>ControllerTest extends BaseControllerTestCase {
 
     public void testHandleRequest() throws Exception {
         <XDtForm:className/>Controller c = 
-            (<XDtForm:className/>Controller) ctx.getBean("<XDtForm:classNameLower/>Controller");
+            (<XDtForm:className/>Controller) applicationContext.getBean("<XDtForm:classNameLower/>Controller");
         ModelAndView mav = c.handleRequest(new MockHttpServletRequest(),
                                            (HttpServletResponse) null);
         Map m = mav.getModel();

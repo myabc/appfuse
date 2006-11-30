@@ -13,17 +13,10 @@ import com.dumbster.smtp.SimpleSmtpServer;
 
 
 public class SignupControllerTest extends BaseControllerTestCase {
-    private SignupController c;
+    private SignupController c = null;
 
-    protected void setUp() throws Exception {
-        // needed to initialize a user
-        super.setUp();
-        c = (SignupController) ctx.getBean("signupController");
-    }
-
-    protected void tearDown() throws Exception {
-        super.tearDown();
-        c = null;
+    public void setSignupController(SignupController signup) {
+        this.c = signup;
     }
     
     public void testDisplayForm() throws Exception {
