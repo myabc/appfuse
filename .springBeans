@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beansProjectDescription>
+	<configExtensions>
+		<configExtension>xml</configExtension>
+	</configExtensions>
+	<configs>
+		<config>src/dao/org/appfuse/dao/hibernate/applicationContext-hibernate.xml</config>
+		<config>src/service/org/appfuse/service/applicationContext-service.xml</config>
+		<config>web/WEB-INF/applicationContext-resources.xml</config>
+	</configs>
+	<configSets>
+	</configSets>
+</beansProjectDescription>
