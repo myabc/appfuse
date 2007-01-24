@@ -1,8 +1,11 @@
 package org.appfuse.webapp.action;
 
+import java.io.Serializable;
 import java.text.MessageFormat;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -15,6 +18,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.beanutils.BeanComparator;
+import org.apache.commons.collections.comparators.NullComparator;
+import org.apache.commons.collections.comparators.ReverseComparator;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
@@ -33,10 +39,12 @@ public class BasePage {
     protected SimpleMailMessage message = null;
     protected String templateName = null;
     protected FacesContext facesContext = null;
+    protected String sortColumn = null;
+    protected boolean ascending = true;
+    protected boolean nullsAreHigh = true;
 
     /**
      * Allow overriding of facesContext for unit tests
-     * @param userManager
      */
     public void setFacesContext(FacesContext facesContext) {
         this.facesContext = facesContext;
@@ -233,5 +241,37 @@ public class BasePage {
 
     public void setTemplateName(String templateName) {
         this.templateName = templateName;
+    }
+
+    // The following methods are used by t:dataTable for sorting.
+    public String getSortColumn() {
+        return sortColumn;
+    }
+
+    public void setSortColumn(String sortColumn) {
+        this.sortColumn = sortColumn;
+    }
+
+    public boolean isAscending() {
+        return ascending;
+    }
+
+    public void setAscending(boolean ascending) {
+        this.ascending = ascending;
+    }
+
+    /**
+     * Sort list according to which column has been clicked on.
+     * @param list
+     * @return ordered list
+     */
+    @SuppressWarnings("unchecked")
+    protected List sort(List list) {
+        Comparator comparator = new BeanComparator(sortColumn, new NullComparator(nullsAreHigh));
+        if (!ascending) {
+            comparator = new ReverseComparator(comparator);
+        }
+        Collections.sort(list, comparator);
+        return list;
     }
 }
