@@ -27,7 +27,14 @@ public class LocaleFilter extends OncePerRequestFilter {
         Locale preferredLocale = null;
 
         if (locale != null) {
-            preferredLocale = new Locale(locale);
+            int indexOfUnderscore = locale.indexOf('_');
+            if (indexOfUnderscore != -1) {
+                String language = locale.substring(0, indexOfUnderscore);
+                String country = locale.substring(indexOfUnderscore + 1);
+                preferredLocale = new Locale(language, country);
+            } else {
+                preferredLocale = new Locale(locale);
+            }
         }
         
         HttpSession session = request.getSession(false);
