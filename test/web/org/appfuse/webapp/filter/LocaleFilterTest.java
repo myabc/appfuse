@@ -89,4 +89,3 @@ public class LocaleFilterTest extends TestCase {
         assertEquals(new Locale("zh", "TW"), locale);
     }
 }
-}
