@@ -29,9 +29,11 @@
         <appfuse:label styleClass="desc" key="${pojoNameLower}.${field.name}"/>
         <form:errors path="${field.name}" cssClass="fieldError"/>
         <#if field.value.typeName == "java.util.Date">
-        <form:input path="${field.name}" id="${field.name}" cssClass="text medium"/> <!-- todo: add calendar -->
+        <script type="text/javascript">dojo.require("dojo.widget.DatePicker");</script>
+        <div dojoType="dropdowndatepicker" name="${field.name}" value="${'$'}{${pojoNameLower}.${field.name}}" class="text medium"
+             displayFormat="${'$'}{datePattern}" saveFormat="${'$'}{datePattern}" containerToggle="wipe" containerToggleDuration="300"/>
         <#elseif field.value.typeName == "boolean" || field.value.typeName == "java.lang.Boolean">
-        <form:checkbox path="${field.name}" id="${field.name}" cssClass="choice"/>
+        <form:checkbox path="${field.name}" id="${field.name}" cssClass="checkbox"/>
         <#else>
         <form:input path="${field.name}" id="${field.name}" cssClass="text medium"/>
         </#if>

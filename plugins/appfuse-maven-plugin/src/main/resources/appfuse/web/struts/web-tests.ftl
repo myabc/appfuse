@@ -83,7 +83,7 @@
             [#if !field.equals(pojo.identifierProperty) && !column.nullable && !c2h.isCollection(field) && !c2h.isManyToOne(field)]
                 [#if field.value.typeName == "boolean" || field.value.typeName = "java.lang.Boolean"]
                 <setCheckbox description="set ${field.name}" name="${pojoNameLower}.${field.name}" value="${data.getValueForWebTest(field.value.typeName)}"/>
-                [#else]
+                [#elseif field.value.typeName != "java.util.Date"] <!-- WebTest doesn't work with Dojo's DatePicker, we'll probably move to Selenium before 2.0 to fix this. -->
                 <setInputField description="set ${field.name}" name="${pojoNameLower}.${field.name}" value="${data.getValueForWebTest(field.value.typeName)}"/>
                 [/#if]
             [/#if]

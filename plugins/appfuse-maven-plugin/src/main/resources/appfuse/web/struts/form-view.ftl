@@ -19,9 +19,14 @@
 <#elseif !c2h.isCollection(field) && !c2h.isManyToOne(field)>
     <#foreach column in field.getColumnIterator()>
         <#if field.value.typeName == "java.util.Date">
-            <#lt/>    <s:textfield key="${pojoNameLower}.${field.name}" required="${(!column.nullable)?string}" cssClass="text medium"/> <!-- todo: add calendar -->
+            <#lt/>    <s:datetimepicker key="${pojoNameLower}.${field.name}" required="${(!column.nullable)?string}"
+            <#lt/>        toggleType="wipe" toggleDuration="300" displayFormat="${'$'}{datePattern}" cssClass="text medium"/>    
         <#elseif field.value.typeName == "boolean">
-            <#lt/>    <s:checkbox key="${pojoNameLower}.${field.name}" required="${(!column.nullable)?string}" cssClass="choice"/>
+            <#lt/><li>
+            <#lt/>    <s:checkbox key="${pojoNameLower}.${field.name}" cssClass="checkbox" theme="simple"/>
+            <#lt/>    <!-- For some reason, key prints out the raw value for the label (i.e. true) instead of the i18n key -->
+            <#lt/>    <s:label key="${pojoNameLower}.${field.name}" value="%{getText('${pojoNameLower}.${field.name}')}" cssClass="choice desc" theme="simple"/>
+            <#lt/></li>
         <#else>
             <#lt/>    <s:textfield key="${pojoNameLower}.${field.name}" required="${(!column.nullable)?string}" cssClass="text medium"/>
         </#if>

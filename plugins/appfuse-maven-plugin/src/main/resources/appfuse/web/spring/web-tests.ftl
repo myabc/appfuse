@@ -52,7 +52,7 @@
             [#if !field.equals(pojo.identifierProperty) && !column.nullable && !c2h.isCollection(field) && !c2h.isManyToOne(field)]
                 [#if field.value.typeName == "boolean" || field.value.typeName = "java.lang.Boolean"]
                 <setCheckbox description="set ${field.name}" name="${field.name}" value="${data.getValueForWebTest(field.value.typeName)}"/>
-                [#else]
+                [#elseif field.value.typeName != "java.util.Date"] <!-- WebTest doesn't work with Dojo's DatePicker, we'll probably move to Selenium before 2.0 to fix this. -->
                 <setInputField description="set ${field.name}" name="${field.name}" value="${data.getValueForWebTest(field.value.typeName)}"/>
                 [/#if]
             [/#if]
@@ -85,7 +85,7 @@
             [#if !field.equals(pojo.identifierProperty) && !column.nullable && !c2h.isCollection(field) && !c2h.isManyToOne(field)]
                 [#if field.value.typeName == "boolean" || field.value.typeName = "java.lang.Boolean"]
                 <setCheckbox description="set ${field.name}" name="${field.name}" value="${data.getValueForWebTest(field.value.typeName)}"/>
-                [#else]
+                [#elseif field.value.typeName != "java.util.Date"] <!-- WebTest doesn't work with Dojo's DatePicker, we'll probably move to Selenium before 2.0 to fix this. -->
                 <setInputField description="set ${field.name}" name="${field.name}" value="${data.getValueForWebTest(field.value.typeName)}"/>
                 [/#if]
             [/#if]
@@ -95,7 +95,7 @@
 
                 <clickbutton label="${'$'}{button.save}" description="Click button 'Save'"/>
                 <verifytitle description="${pojo.shortName} List appears if save successful"
-                    text=".*${'$'}{${pojoNameLower}List.title}.*" regex="true"/>
+                             text=".*${'$'}{${pojoNameLower}List.title}.*" regex="true"/>
                 <verifytext description="verify success message" text="${'$'}{${pojoNameLower}.added}"/>
             </steps>
         </webtest>
@@ -115,5 +115,6 @@
                 <verifytext description="verify success message" text="${'$'}{${pojoNameLower}.deleted}"/>
             </steps>
         </webtest>
-    </target>    <!--${pojo.shortName}-END-->
+    </target>
+     <!--${pojo.shortName}-END-->
 </project>
